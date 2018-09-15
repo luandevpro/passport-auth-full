@@ -1,0 +1,21 @@
+.bg-twitter {
+   background: #1da1f2;
+   color: #fff;
+}
+
+.btn-twitter-signup {
+   background: #1da1f2;
+   font-weight: bold;
+   color: #fff;
+   border-radius: 20px;
+   width: 300px;
+}
+
+.btn-twitter-login {
+   background: transparent;
+   border: 1px solid #1da1f2;
+   width: 300px;
+   border-radius: 20px;
+   color: #1da1f2;
+   font-weight: bold;
+}
