@@ -9,6 +9,9 @@ const   express       =  require("express");
         flash         =  require("connect-flash");
       expressLayout   =  require("express-ejs-layouts");
        cookieParser   =  require("cookie-parser");
+         passport     = require("passport");
+
+         require("./config/passport")(passport);
 
 // set ejs
 app.set("view engine" , "ejs");
@@ -22,16 +25,25 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(session({
    secret: process.env.SECRET,
-   resave: true,
+   resave: false,
    saveUninitialized: true,
    cookie: { maxAge : 8540000 },
    store : new mongoStore({
       mongooseConnection: mongoose.connection
    })
 }))
+// set session passport
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
+// set var global
+app.use(function(req,res,next){
+   res.locals.user = req.user || null;
+   next();
+})
 // connect mongoose
-mongoose.connect(process.env.DB_URI , {useNewUrlParser: true})
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.URI , {useNewUrlParser: true});
 // set router
 app.use(require("./app/routes"));
 //run port 

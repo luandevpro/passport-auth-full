@@ -1,0 +1,30 @@
+<%if (error.length > 0 ) { %>
+<div class="alert alert-danger">
+   <% error.forEach(function(error){ %>
+   <div>
+      <%= error.text %>
+   </div>
+   <% }) %>
+</div>
+<% } %>
+<div class="card card-body">
+   <form action="/users/signup" method="POST">
+      <div class="form-group">
+         <label for="title">Name</label>
+         <input type="text" class="form-control" name="name" placeholder="Name...">
+      </div>
+      <div class="form-group">
+         <label for="title">Email</label>
+         <input type="email" class="form-control" name="email" placeholder="Email...">
+      </div>
+      <div class="form-group">
+         <label for="title">Password</label>
+         <input type="password" class="form-control" name="password" placeholder="Password...">
+      </div>
+      <div class="form-group">
+         <label for="title">PasswordConfirm</label>
+         <input type="password" class="form-control" name="confirmpassword" placeholder="PasswordConfirm...">
+      </div>
+      <button type="submit" class="btn btn-success btn-md form-control">Submit</button>
+   </form>
+</div>
